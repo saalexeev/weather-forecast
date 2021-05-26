@@ -1,0 +1,25 @@
+{
+  "name": "saalexeev/weather-forecast",
+  "description": "test task for Maximal",
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Alexeev Stanislav",
+      "email": "s12630.sa@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "ext-curl": "*",
+    "ext-dom": "*",
+    "ext-libxml": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "WeatherForecast\\": "src/"
+    }
+  }
+}
