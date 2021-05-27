@@ -10,6 +10,7 @@ use DOMXPath;
 use DOMDocument;
 use DOMNodeList;
 use WeatherForecast\Engines\ParserInterface;
+use WeatherForecast\ParserResults\YandexParserResult;
 use WeatherForecast\Exceptions\HtmlParseException;
 use WeatherForecast\Engines\ParserResultInterface;
 
@@ -101,11 +102,7 @@ class YandexParser implements ParserInterface
 	private function ensureIfNodeListIsValid($nodeList): void
 	{
 		if ($nodeList === false) {
-			throw new HtmlParseException('');
-		}
-
-		if (!$nodeList instanceof DOMNodeList) {
-			throw new HtmlParseException('');
+			throw new HtmlParseException('Node list is invalid');
 		}
 
 		if (!$nodeList->length) {

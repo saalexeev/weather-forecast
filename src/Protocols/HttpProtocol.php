@@ -8,7 +8,7 @@ use JsonException;
 use WeatherForecast\Exceptions\HttpException;
 use WeatherForecast\Engines\ProtocolInterface;
 
-final class HttpProtocol implements ProtocolInterface
+class HttpProtocol implements ProtocolInterface
 {
 
 	public const HTTP_GET = 'GET';
@@ -51,6 +51,9 @@ final class HttpProtocol implements ProtocolInterface
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
 
 		return $ch;
 	}
@@ -91,6 +94,8 @@ final class HttpProtocol implements ProtocolInterface
 		if (curl_errno($channel)) {
 			throw new HttpException(curl_error($channel));
 		}
+
+		curl_close($channel);
 
 		return $result;
 	}
