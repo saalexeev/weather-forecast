@@ -6,5 +6,7 @@ namespace WeatherForecast\Engines;
 
 interface WeatherServiceInterface
 {
-	public function getTomorrowWeather(string $city);
+	public function getMoscowWeather(): ParserResultInterface;
+
+	public function getSaintPetersburgWeather(): ParserResultInterface;
 }

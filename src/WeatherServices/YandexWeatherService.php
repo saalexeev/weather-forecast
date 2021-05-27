@@ -31,11 +31,27 @@ class YandexWeatherService implements WeatherServiceInterface
 	}
 
 	/**
+	 * @return ParserResultInterface
+	 */
+	public function getMoscowWeather(): ParserResultInterface
+	{
+		return $this->getTomorrowWeather('moscow');
+	}
+
+	/**
+	 * @return ParserResultInterface
+	 */
+	public function getSaintPetersburgWeather(): ParserResultInterface
+	{
+		return $this->getTomorrowWeather('saint-petersburg');
+	}
+
+	/**
 	 * @param string $city
 	 *
 	 * @return ParserResultInterface
 	 */
-	public function getTomorrowWeather(string $city): ParserResultInterface
+	private function getTomorrowWeather(string $city): ParserResultInterface
 	{
 		if ($this->cache->has($city)) {
 			$rawData = $this->cache->get($city);
